@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, SafeAreaView } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Alert, SafeAreaView, } from 'react-native';
 
-const ToDoForm = () => {
-    const handlePress = () => {};
+function ToDoForm({ addTask }) {
+  const [taskText, setTaskText] = React.useState('');
 
-    const [inputText, setInputText] = React.useState('');
-    const handleTextChange = (text) => {
-    setInputText(text);
+  const handleAddTask = () => {
+    if (taskText.trim() === '') {
+      Alert.alert('Enter a task');
+      return;
+    }
 
-};
+    addTask(taskText);
+    setTaskText('');
+  }
   return (
     <View style={styles.form}>
     <TextInput
       style={styles.input}
-      value={inputText}
-      onChangeText={handleTextChange}
-      placeholder="Add a new task..."/>
-    <Button title="Add" onPress={handlePress}/>
+      placeholder="Add a new task..."
+      onChangeText={(Text) => setTaskText(Text)}
+      value={taskText}/>
+    <Button title="Add" onPress={handleAddTask}/>
   </View>
   );
 };
