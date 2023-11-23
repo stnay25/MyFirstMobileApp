@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Alert, SafeAreaView, } from 'react-native';
 
 function ToDoForm({ addTask }) {
-  const [taskText, setTaskText] = React.useState('');
+  const [taskText, setTaskText] = useState('');
 
   const handleAddTask = () => {
     if (taskText.trim() === '') {
@@ -14,6 +14,7 @@ function ToDoForm({ addTask }) {
     setTaskText('');
   }
   return (
+    <SafeAreaView>
     <View style={styles.form}>
     <TextInput
       style={styles.input}
@@ -22,6 +23,7 @@ function ToDoForm({ addTask }) {
       value={taskText}/>
     <Button title="Add" onPress={handleAddTask}/>
   </View>
+  </SafeAreaView>
   );
 };
 
